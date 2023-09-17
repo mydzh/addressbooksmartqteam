@@ -29,3 +29,7 @@ For running the project
    docker-compose build
    
    docker-compose up
+
+5. open your browser with the address
+
+      http://localhost:8080/PHP82/index.php
