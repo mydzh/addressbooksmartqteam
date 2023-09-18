@@ -7,19 +7,19 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE); ini_set('display_errors', '1');
 
 $isFromSession = true;
 $isElse= false;
-require_once('/var/www/html/php82/Addressbook.php');
-require_once('/var/www/html/php82/AddressbookEntry.php');
+require_once('./Addressbook.php');
+require_once('./AddressbookEntry.php');
 session_start();
 if(isset($_SESSION) &&  isset($_SESSION["addressbook"])){
     $addressbook = $_SESSION["addressbook"];
     $isElse= true;
 } else {
-    require_once('/var/www/html/php82/data.php');
+    require_once('./data.php');
     $isFromSession = false;
 }
 
 if(isset($_GET["load"])){
-    require_once('/var/www/html/php82/data.php');
+    require_once('./data.php');
 }
 
 $order = null;
