@@ -1,43 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace PHP82;
-
 error_reporting(E_ERROR | E_WARNING | E_PARSE); ini_set('display_errors', '1');
-
-$isFromSession = true;
-$isElse= false;
-require_once('./Addressbook.php');
-require_once('./AddressbookEntry.php');
-session_start();
-if(isset($_SESSION) &&  isset($_SESSION["addressbook"])){
-    $addressbook = $_SESSION["addressbook"];
-    $isElse= true;
-} else {
-    require_once('./data.php');
-    $isFromSession = false;
-}
-
-if(isset($_GET["load"])){
-    require_once('./data.php');
-}
-
-$order = null;
-$sort = null;
-$linkSortOrder = "asc";
-
-if(isset($_GET["sort"]) && isset($_GET["order"])){
-    $sort = $_GET["sort"];
-    $order = $_GET["order"];
-    $addressbook->sort($_GET["sort"],$_GET["order"]);
-
-    if($order ==="asc") {
-        $linkSortOrder = "desc";
-    } elseif ($order ==="desc") {
-        $linkSortOrder = "asc";
-    }
-}
-
 
 ?>
 <!DOCTYPE html>
@@ -81,7 +45,6 @@ if(isset($_GET["sort"]) && isset($_GET["order"])){
   </div>
 <?php endforeach;?>
 
-
 </div>
 <div class="row" style="margin-top: 5px;" id="addrow">
     <div class="col-sm-3"></div>
@@ -91,9 +54,9 @@ if(isset($_GET["sort"]) && isset($_GET["order"])){
         <button class="add" name="add" id="add">add new</button>
     </div>
 </div>
-<button type="submit">submit</button>
+
 </form>
-<script src="addressbook.js"></script>
+<script src="/js/addressbook.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>

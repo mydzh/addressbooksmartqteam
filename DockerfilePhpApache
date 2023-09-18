@@ -1,2 +1,10 @@
 FROM php:8.2-apache
 #COPY src/ /var/www/html/
+#RUN apt update
+#RUN apt install iproute2
+#RUN apt install iputils-ping.
+#RUN echo "127.0.0.1 php82.example.com" >> /etc/hosts
+COPY ./phpapp.conf /etc/apache2/sites-available/
+COPY ./php82.example.com.conf /etc/apache2/sites-available/
+COPY ./000-default.conf /etc/apache2/sites-available/
+

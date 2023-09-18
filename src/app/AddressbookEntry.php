@@ -1,6 +1,6 @@
 <?php
 
-namespace PHP82;
+namespace App;
 
 
 class AddressbookEntry

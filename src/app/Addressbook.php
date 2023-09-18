@@ -1,8 +1,7 @@
 <?php
 
-namespace PHP82;
+namespace App;
 
-//use AddressbookEntry;
 
 class Addressbook
 {
