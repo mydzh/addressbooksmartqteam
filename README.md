@@ -9,3 +9,27 @@ Other: Must work on all major operating systems: Linux, OSX and Windows.
 Its NOT allowed to use ANY framework or other peoples code.
 
 A good frontend design is not needed. 
+
+Solution:
+
+For running the project
+
+1. install docker desctop fot the operating system (Windows Mac or Linux) of your choice https://www.docker.com/products/docker-desktop/
+
+2. clone repository from your command line termina
+   
+   git clone https://github.com/mydzh/addressbooksmartqteam.git
+   
+3. change the folder to the project
+   
+   cd addressbooksmartqteam
+   
+4.  build and run the docker container
+
+   docker-compose build
+   
+   docker-compose up
+
+5. open your browser with the address
+
+      http://localhost:8080/PHP82/index.php
