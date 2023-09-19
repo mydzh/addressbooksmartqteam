@@ -32,4 +32,4 @@ For running the project
 
 5. open your browser with the address
 
-      http://localhost:8080/index.php
+      http://localhost:8080

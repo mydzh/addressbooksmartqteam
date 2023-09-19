@@ -12,8 +12,9 @@ document.querySelectorAll("button.edit").forEach((bttn)=> {bttn.addEventListener
     rowDiv.querySelector("div.edit").style.display = "none";
     rowDiv.querySelector("div.save").style.display = "block";
     });
-  });
-  document.querySelectorAll("a.sortlink").forEach((bttn)=> {bttn.addEventListener("click", function(event){
+});
+
+document.querySelectorAll("a.sortlink").forEach((bttn)=> {bttn.addEventListener("click", function(event){
     event.preventDefault();
     let sort = event.target.dataset.sort;
     let order = event.target.dataset.order;
@@ -25,7 +26,7 @@ document.querySelectorAll("button.edit").forEach((bttn)=> {bttn.addEventListener
     window.location.href = "/index?sort="+sort+"&order="+order;
 
     });
-  });
+});
 
   
 
@@ -35,32 +36,15 @@ document.querySelectorAll("button.edit").forEach((bttn)=> {bttn.addEventListener
     let rowDiv = document.getElementById("row" + id);
     let lastname = document.getElementById("lastname" + id);
     let firstname = document.getElementById("firstname" + id);
-    console.log("rowDiv:", rowDiv);
+ 
 
-    fetch('/edit', {
-        method: 'POST',
-        body: JSON.stringify({
-            id:id,
-            lastname:lastname.value,
-            firstname:firstname.value,
-        }),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        }
-        })
-        .then(function(response){ 
-        return response.json()})
-        .then(function(data)
-        {
-          console.log(data)
+    performAction("edit", {
+      id:id,
+      lastname:lastname.value,
+      firstname:firstname.value,
+  } );
 
-        /* title=document.getElementById("title")
-        body=document.getElementById("bd")
-        title.innerHTML = data.title
-        body.innerHTML = data.body  
-        */
-      }).catch(error => console.error('Error:', error)); 
-
+    
     rowDiv.querySelectorAll("input").forEach(inputRow => {
         if(inputRow.name !== "id" + id) {
             inputRow.disabled = true;
@@ -79,29 +63,13 @@ document.querySelectorAll("button.edit").forEach((bttn)=> {bttn.addEventListener
     let lastname = document.getElementById("lastname" + id);
     let firstname = document.getElementById("firstname" + id);
 
-    fetch('/del', {
-      method: 'POST',
-      body: JSON.stringify({
-          id:id,
-          lastname:lastname.value,
-          firstname:firstname.value,
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      }
-      })
-      .then(function(response){ 
-      return response.json()})
-      .then(function(data)
-      {console.log(data)
-        window.location.reload();
-      /* title=document.getElementById("title")
-      body=document.getElementById("bd")
-      title.innerHTML = data.title
-      body.innerHTML = data.body  
-      */
-    }).catch(error => console.error('Error:', error)); 
+    let jsonObj = {
+      id: id,
+      lastname: lastname.value,
+      firstname: firstname.value,
+    }
 
+    performAction("del", jsonObj ,true);
 
   });
   });
@@ -178,44 +146,43 @@ document.querySelectorAll("button.edit").forEach((bttn)=> {bttn.addEventListener
   document.getElementById("saveNewRowButton").addEventListener("click", function(event){
     event.preventDefault();
 
-    //let id = document.getElementById("newId");
     let lastname = document.getElementById("newLastname");
     let firstname = document.getElementById("newFirstname");
 
-
-    fetch('/add', {
-        method: 'POST',
-        body: JSON.stringify({
-            id:"",
-            lastname:lastname.value,
-            firstname:firstname.value,
-        }),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        }
-        })
-        .then(function(response){ 
-        return response.json()})
-        .then(function(data)
-        {
-          console.log(data);
-          window.location.reload();
-        /* title=document.getElementById("title")
-        body=document.getElementById("bd")
-        title.innerHTML = data.title
-        body.innerHTML = data.body  
-        */
-      }).catch(error => console.error('Error:', error)); 
-
-      //let newRow = document.getElementById("newrow");
- 
-      //container.removeChild(newRow);
-      //document.getElementById("addrow").style.display="";
-  
+    performAction("add", {
+      id:"",
+      lastname:lastname.value,
+      firstname:firstname.value,
+  }, true );
 
 });
   });
   });
+
+function performAction(actionUrl, jsonObj, reload = false) {
+  fetch('/' + actionUrl, {
+    method: 'POST',
+    body: JSON.stringify({
+        id:jsonObj.id,
+        lastname:jsonObj.lastname,
+        firstname:jsonObj.firstname,
+    }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    }
+    })
+    .then(function(response){ 
+    return response.json()})
+    .then(function(data)
+    {
+      if(reload) {
+        window.location.reload();
+      }
+      
+    })
+    .catch(error => console.error('Error:', error)
+  ); 
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   let searchParams = new URLSearchParams(location.search);

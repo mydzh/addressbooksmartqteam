@@ -43,6 +43,7 @@ if(isset($_REQUEST["path"])) {
     }
 }
 
+// run action depending on the request url
 $app->$action();
 
 ?>
