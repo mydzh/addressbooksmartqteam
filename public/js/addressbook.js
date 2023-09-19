@@ -22,7 +22,7 @@ document.querySelectorAll("button.edit").forEach((bttn)=> {bttn.addEventListener
     if(getsort === sort) {
       order = getorder;
     }
-    window.location.href = "/index.php?sort="+sort+"&order="+order;
+    window.location.href = "/index?sort="+sort+"&order="+order;
 
     });
   });
@@ -37,7 +37,7 @@ document.querySelectorAll("button.edit").forEach((bttn)=> {bttn.addEventListener
     let firstname = document.getElementById("firstname" + id);
     console.log("rowDiv:", rowDiv);
 
-    fetch('/edit.php', {
+    fetch('/edit', {
         method: 'POST',
         body: JSON.stringify({
             id:id,
@@ -79,7 +79,7 @@ document.querySelectorAll("button.edit").forEach((bttn)=> {bttn.addEventListener
     let lastname = document.getElementById("lastname" + id);
     let firstname = document.getElementById("firstname" + id);
 
-    fetch('/del.php', {
+    fetch('/del', {
       method: 'POST',
       body: JSON.stringify({
           id:id,
@@ -183,7 +183,7 @@ document.querySelectorAll("button.edit").forEach((bttn)=> {bttn.addEventListener
     let firstname = document.getElementById("newFirstname");
 
 
-    fetch('/add.php', {
+    fetch('/add', {
         method: 'POST',
         body: JSON.stringify({
             id:"",
@@ -220,6 +220,6 @@ document.querySelectorAll("button.edit").forEach((bttn)=> {bttn.addEventListener
 document.addEventListener("DOMContentLoaded", () => {
   let searchParams = new URLSearchParams(location.search);
   if(searchParams.has("load")){
-    window.location.href = "/index.php";
+    window.location.href = "/index";
   }
 });

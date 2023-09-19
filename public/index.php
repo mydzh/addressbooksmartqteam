@@ -9,7 +9,7 @@ spl_autoload_register(function ($class) {
     // base directory for the namespace prefix
     $base_dir = __DIR__ . '/../src/' . lcfirst($prefix);
 
-    // does the class use the namespace prefix?
+    // does the class use the namespa2ce prefix?
     $len = strlen($prefix);
 
     if (strncmp($prefix, $class, $len) !== 0) {
@@ -25,6 +25,24 @@ spl_autoload_register(function ($class) {
     }
 });
 
+// creating application object
 $app = new App\Application();
-$app->run();
+
+
+// simple route to action implementation
+$action = "run";
+
+if(isset($_REQUEST["path"])) {
+    
+    switch($_REQUEST["path"]) {
+        case "add":
+        case "del":
+        case "edit":
+            $action = $_REQUEST["path"];
+            break;
+    }
+}
+
+$app->$action();
+
 ?>

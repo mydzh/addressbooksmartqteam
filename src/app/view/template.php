@@ -14,14 +14,14 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE); ini_set('display_errors', '1');
 </head>
 <body>
 
-<h1><a href="index.php">Addressbook</a></h1>
-<a href="index.php?load">load data</a>
+<h1><a href="index">Addressbook</a></h1>
+<a href="index?load">load data</a>
 <div class="container">
-<form action="/PHP82/add.php" id="addressbookForm" method="post">
+<form action="" id="addressbookForm" method="post">
 <div class="row">
-    <div class="col-sm-3"><a href="/PHP82/index.php?sort=id&order=asc" class="sortlink" id="sortId" data-getsort=<?=$sort?> data-getorder=<?=$linkSortOrder?> data-sort="id" data-order="asc">Id</a></div>
-    <div class="col-sm-3"><a href="/PHP82/index.php?sort=firstName&order=asc" class="sortlink" id="sortFirstname" data-getsort=<?=$sort?> data-getorder=<?=$linkSortOrder?>  data-sort="firstName" data-order="asc">Vorname</a></div>
-    <div class="col-sm-3"><a href="/PHP82/index.php?sort=lastName&order=asc" class="sortlink" id="sortLastname" data-getsort=<?=$sort?> data-getorder=<?=$linkSortOrder?> data-sort="lastName" data-order="asc">Name</a></div>
+    <div class="col-sm-3"><a href="/PHP82/index?sort=id&order=asc" class="sortlink" id="sortId" data-getsort=<?=$sort?> data-getorder=<?=$linkSortOrder?> data-sort="id" data-order="asc">Id</a></div>
+    <div class="col-sm-3"><a href="/PHP82/index?sort=firstName&order=asc" class="sortlink" id="sortFirstname" data-getsort=<?=$sort?> data-getorder=<?=$linkSortOrder?>  data-sort="firstName" data-order="asc">Vorname</a></div>
+    <div class="col-sm-3"><a href="/PHP82/index?sort=lastName&order=asc" class="sortlink" id="sortLastname" data-getsort=<?=$sort?> data-getorder=<?=$linkSortOrder?> data-sort="lastName" data-order="asc">Name</a></div>
     <div class="col-sm-3">Actions</div>
 </div>
 <?php foreach($addressbook->getEntries() as $key => $entry):?>

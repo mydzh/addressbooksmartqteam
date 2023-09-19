@@ -22,6 +22,7 @@ class Application
 
         if(isset($_GET["load"])){
             $addressbook = $this->loadFirstAddressbook();
+            $_SESSION["addressbook"] = $addressbook;
         }
 
         $order = null;
@@ -76,20 +77,20 @@ class Application
 
         $data = json_decode(file_get_contents('php://input'), true);
 
-
         if($_SESSION && $_SESSION["addressbook"]) {
             $addressbookNew = new Addressbook();
             $addressbookNew = $_SESSION["addressbook"];
 
             $newEntry = new AddressbookEntry($data["firstname"],$data["lastname"]);
             $newEntry->setId(intval($data["id"]));
+
             $addressbookNew->deleteEntry($newEntry);
             $_SESSION["addressbook"] =  $addressbookNew;
 
             echo json_encode(["status"=> "ok"]);
         }
     }
-    
+
     public function edit(){
         session_start();
         $data = json_decode(file_get_contents('php://input'), true);
