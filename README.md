@@ -14,7 +14,7 @@ Solution:
 
 For running the project
 
-1. install docker desctop fot the operating system (Windows Mac or Linux) of your choice https://www.docker.com/products/docker-desktop/
+1. install docker and docker desctop fot the operating system (Windows Mac or Linux) of your choice https://www.docker.com/products/docker-desktop/
 
 2. clone repository from your command line termina
    
@@ -32,4 +32,4 @@ For running the project
 
 5. open your browser with the address
 
-      http://localhost:8080/PHP82/index.php
+      http://localhost:8080/index.php
