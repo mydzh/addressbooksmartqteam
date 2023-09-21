@@ -33,3 +33,5 @@ For running the project
 5. open your browser with the address
 
       http://localhost:8080
+
+6. Alternatively you can see the running version uploaded on the hosting http://mykhailo.infinityfreeapp.com/index
